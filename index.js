@@ -10,10 +10,7 @@ class ProductManager {
             console.log("Producto con code proporcionado ya existe")
             return
         }
-        if ( title =="" || description == "" || price == undefined || thumbnail=="" || code=="" || stock==undefined  ){
-            console.log("Faltan datos")
-            return
-        }
+
         const producto = {
             id: idProduct,
             title,
@@ -22,6 +19,11 @@ class ProductManager {
             thumbnail,
             code,
             stock
+        }
+
+        if ( Object.values(producto).includes(undefined) ){
+            console.log("Faltan datos")
+            return
         }
         this.products.push(producto)
     }
@@ -33,8 +35,6 @@ class ProductManager {
         productFound ? console.log(productFound) : console.error("NOT FOUND")
     }
 }
-
-
 const productManager = new ProductManager()
 
 productManager.addProduct("Iphone 14" , "Iphone blanco 14 256GB" , 2500,  "./img/iphone14", "IP14" , 10)
@@ -43,5 +43,6 @@ productManager.addProduct("Iphone 12" , "Iphone rose 12 256GB" , 1500,   "./img/
 
 console.log(productManager.getProducts())
 productManager.getProductById(5)
+
 
 
